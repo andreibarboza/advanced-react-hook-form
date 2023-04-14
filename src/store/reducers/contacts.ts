@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'contacts',
   initialState: {
-    name: 'o tal do Drei'
+    name: 'Andrei',
   },
   reducers: {
     setName(state, data) {
-      state.name = data.payload
-    }
+      state.name = data.payload;
+    },
   },
 });
 

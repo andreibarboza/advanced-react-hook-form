@@ -18,16 +18,8 @@ export type Response = {
 
 export const requestAPI = async (options: Options) => {
   try {
-
-
     const response = await API(options);
-    // const notAuthorized = response?.status;
 
-    // if (notAuthorized === 401 && process.env.NODE_ENV !== 'development') {
-    //   if (typeof window !== 'undefined') {
-    //     window.location.href = URL;
-    //   }
-    // }
     return { error: false, response };
   } catch (error) {
     return { error: true, response: error };

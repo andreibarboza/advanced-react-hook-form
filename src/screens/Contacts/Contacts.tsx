@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
-import * as SC from './styles';
-import { RootState } from '../../store/app';
+import { RootState } from '@store/app';
 import { Services } from '@services/index';
 import { Response } from '@services/api';
-import { useEffect } from 'react';
+
+import * as SC from './styles';
 
 export const Contacts = () => {
   const name = useSelector((state: RootState) => state.contacts.name);
@@ -16,7 +18,9 @@ export const Contacts = () => {
 
   useEffect(() => {
     getCep();
-  }, [])
+  }, []);
 
-  return <SC.ScreenContactsContainer>Meu nome é: {name}</SC.ScreenContactsContainer>
-}
+  return (
+    <SC.ScreenContactsContainer>Meu nome é: {name}</SC.ScreenContactsContainer>
+  );
+};
