@@ -1,3 +1,3 @@
-import { getCep } from "./viacep";
+import { getCep } from './viacep';
 
 export default { getCep };

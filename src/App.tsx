@@ -1,14 +1,15 @@
-import './App.css'
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import store from './store/app';
 import Contacts from './screens/Contacts';
 
 function App() {
   return (
-    <Provider store={store}>
-      <Contacts />
-    </Provider>
-  )
+    <div className="content">
+      <Provider store={store}>
+        <Contacts />
+      </Provider>
+    </div>
+  );
 }
 
-export default App
+export default App;
