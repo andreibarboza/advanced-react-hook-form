@@ -16,6 +16,7 @@ O `yarn db` é responsável por rodar o json-server (fake api)
 ## Informações importantes
 
 Para a primeira utilização rodar `yarn`.
+
 O projeto está com um `settimeout` setado de dois segundos em cada requisição, para simular um loading.
 
 ## Pacotes utilizados
