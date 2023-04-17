@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDebounce } from '@hooks/useDebounce';
 import { RootState } from '@store/app';
+import { setIsLoading } from '@store/reducers/visuals';
 import { Response } from '@services/api';
 import { Services } from '@services/index';
 import { IContact } from '@customTypes/contacts';
@@ -10,7 +11,6 @@ import { setContacts } from '@store/reducers/contacts';
 import ContactList from './components/ContactList';
 
 import * as SC from './styles';
-import { setIsLoading } from '@store/reducers/visuals';
 
 interface IContactBody {
   search: string;
