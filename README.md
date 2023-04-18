@@ -4,7 +4,7 @@ Projeto de agenda de contatos realizado para o processo seletivo da VExpenses
 
 ## Start
 
-Para rodar o projeto em desenvolvimento:
+Para rodar o projeto em desenvolvimento, instale os pacotes com `yarn` e em seguida:
 
 ```bash
   yarn dev
@@ -13,9 +13,7 @@ Para rodar o projeto em desenvolvimento:
 
 O `yarn db` é responsável por rodar o json-server (fake api)
 
-## Informações importantes
-
-Para a primeira utilização rodar `yarn`.
+## Informação importante
 
 O projeto está com um `settimeout` setado de dois segundos em cada requisição, para simular um loading.
 
