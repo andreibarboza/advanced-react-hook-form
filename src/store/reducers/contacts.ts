@@ -11,7 +11,10 @@ const groupNames = (contact: IContact[]) => {
     letter: el,
     byName: map[el],
   }));
-  return res;
+
+  const sortedContatcs = res.sort((a, b) => a.letter.localeCompare(b.letter));
+
+  return sortedContatcs;
 };
 
 const slice = createSlice({
