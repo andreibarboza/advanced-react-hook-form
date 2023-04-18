@@ -1,5 +1,4 @@
 import InputMask from 'react-input-mask';
-import Button from '@components/Button';
 import {
   Control,
   Controller,
@@ -8,8 +7,9 @@ import {
   UseFormWatch,
 } from 'react-hook-form';
 
-import * as SC from './styles';
+import { ReactComponent as Trash } from '@assets/trash.svg';
 import { IContact } from '@customTypes/contacts';
+import * as SC from './styles';
 
 interface ITelephone {
   telephone: {
@@ -41,9 +41,9 @@ export const Telephone = ({
       <div className="telephone-title">
         <label>Telefone {index + 1} *</label>
         {index !== 0 && (
-          <Button className="sm delete" onClick={() => remove(index)}>
-            Excluir telefone
-          </Button>
+          <div onClick={() => remove(index)}>
+            <Trash />
+          </div>
         )}
       </div>
       <SC.ContainerInputMask>

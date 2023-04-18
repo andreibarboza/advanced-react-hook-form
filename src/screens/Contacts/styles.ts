@@ -13,18 +13,21 @@ export const Header = styled.div`
   height: 60px;
 
   font-size: 2em;
+  font-weight: 700;
 
   display: flex;
   align-items: center;
+  justify-content: center;
+  border-bottom: 5px solid var(--success);
 
   background-color: var(--black-second);
 
-  padding: 25px;
+  padding: 0 25px;
 `;
 
 export const Body = styled.div``;
 
-export const Overlay = styled.div<{ open: boolean; loading: boolean }>`
+export const Overlay = styled.div<{ open: boolean; loading: string }>`
   width: 100%;
   height: calc(100% - 60px);
   display: flex;
@@ -53,8 +56,8 @@ export const Overlay = styled.div<{ open: boolean; loading: boolean }>`
       position: absolute;
       bottom: 0;
       left: 0;
-      background: #00000050;
-      z-index: ${loading ? 200 : 20};
+      background: #00000030;
+      z-index: ${loading === 'true' ? 200 : 20};
     `}
 `;
 
@@ -88,4 +91,10 @@ export const ContainerSearch = styled.div`
       width: 300px;
     }
   }
+`;
+
+export const ContainerBody = styled.div`
+  width: 100%;
+  max-height: calc(100vh - 140px);
+  overflow: auto;
 `;

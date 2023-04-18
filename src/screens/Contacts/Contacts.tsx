@@ -25,24 +25,27 @@ export const Contacts = () => {
     <SC.ScreenContactsContainer>
       <SC.Overlay
         open={modal.isOpen || alert.isOpen || isLoading}
-        loading={isLoading}
+        loading={isLoading.toString()}
       >
         {isLoading && <div className="loader" />}
       </SC.Overlay>
       <SC.Header>Contatos</SC.Header>
-      {contacts.length !== 0 && (
-        <SC.ContainerSearch>
-          <div className="input-img">
-            <input
-              type="text"
-              placeholder="Buscar contatos..."
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <Search />
-          </div>
-        </SC.ContainerSearch>
-      )}
-      <ContactBody search={search} />
+      {contacts.length !== 0 &&
+        contacts.every(({ byName }) => byName.length !== 0) && (
+          <SC.ContainerSearch>
+            <div className="input-img">
+              <input
+                type="text"
+                placeholder="Buscar contatos..."
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <Search />
+            </div>
+          </SC.ContainerSearch>
+        )}
+      <SC.ContainerBody>
+        <ContactBody search={search} />
+      </SC.ContainerBody>
       <ContactFormModal />
       <Notification />
       <ButtonCreate />

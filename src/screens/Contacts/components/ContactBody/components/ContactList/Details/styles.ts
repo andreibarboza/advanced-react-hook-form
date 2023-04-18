@@ -9,26 +9,18 @@ export const ContainerDetails = styled.div`
   .title {
     display: flex;
     align-items: center;
-    font-weight: 600;
+
     gap: 0.4em;
-    margin-bottom: 0.8em;
 
-    > svg {
-      width: 1em;
-      height: 1em;
-      fill: var(--white);
-    }
-  }
-
-  .subtitle {
-    font-size: 0.9em;
+    font-size: 1.1em;
     font-weight: 500;
-    text-decoration: underline;
-  }
+    margin-bottom: 0.4em;
 
-  @media (max-width: 500px) {
-    flex-direction: column;
-    gap: 1em;
+    svg {
+      width: 1.2em;
+      height: 1.2em;
+      fill: var(--success);
+    }
   }
 `;
 
@@ -36,17 +28,21 @@ export const ContainerAddress = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
-
+  width: calc(100% - 125px);
   font-size: 0.8em;
 
   .address {
     display: flex;
     flex-direction: column;
     gap: 0.3em;
+    background: var(--black);
+    padding: 0.6em;
+    width: 100%;
+    border-radius: 8px;
   }
 
   .semi-bold {
-    font-weight: 500;
+    font-weight: 600;
   }
 `;
 
@@ -54,7 +50,7 @@ export const ContainerTelephones = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 0.8em;
+  font-size: 0.85em;
 `;
 
 export const SingleTelephone = styled.div`
@@ -62,10 +58,4 @@ export const SingleTelephone = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.3em;
-
-  svg {
-    width: 1.4em;
-    height: 1.4em;
-    fill: var(--white);
-  }
 `;

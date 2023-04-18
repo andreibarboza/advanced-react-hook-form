@@ -9,6 +9,20 @@ export const ContainerAddress = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0.3em;
+
+    svg {
+      transition: all 200ms;
+      cursor: pointer;
+
+      :hover {
+        opacity: 0.8;
+      }
+
+      width: 1.6em !important;
+      height: 1.6em !important;
+
+      fill: var(--error);
+    }
   }
 
   .address-content {

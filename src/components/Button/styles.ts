@@ -39,4 +39,9 @@ export const Container = styled.div`
     background-color: var(--error);
     color: var(--white);
   }
+
+  .success {
+    background-color: var(--success);
+    color: var(--white);
+  }
 `;

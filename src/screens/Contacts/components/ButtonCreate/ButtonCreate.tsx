@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { setModalContacts } from '@store/reducers/visuals';
 
-import { ReactComponent as Plus } from '@assets/plus.svg';
+import { ReactComponent as Plus } from '@assets/single-plus.svg';
 
 import * as SC from './styles';
 
@@ -20,7 +20,6 @@ export const ButtonCreate = () => {
       }
     >
       <Plus />
-      <button>Criar contato</button>
     </SC.ButtonContainer>
   );
 };

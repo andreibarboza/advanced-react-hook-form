@@ -11,10 +11,10 @@ import {
   UseFormRegister,
   UseFormSetValue,
 } from 'react-hook-form';
-import Button from '@components/Button';
 
-import * as SC from './styles';
 import { IContact } from '@customTypes/contacts';
+import { ReactComponent as Trash } from '@assets/trash.svg';
+import * as SC from './styles';
 
 interface IAddress {
   address: {
@@ -110,9 +110,9 @@ export const Address = ({
       <div className="address-title">
         <label>Endereço {index + 1} *</label>
         {index !== 0 && (
-          <Button className="sm delete" onClick={() => remove(index)}>
-            Excluir endereço
-          </Button>
+          <div onClick={() => remove(index)}>
+            <Trash />
+          </div>
         )}
       </div>
       <div className="address-content">

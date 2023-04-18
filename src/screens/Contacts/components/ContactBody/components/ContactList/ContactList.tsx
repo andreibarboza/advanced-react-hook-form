@@ -13,7 +13,12 @@ import { Response } from '@services/api';
 import { setRemoveContact } from '@store/reducers/contacts';
 import { useState } from 'react';
 import Details from './Details';
-import Button from '@components/Button';
+
+import { ReactComponent as Map } from '@assets/map.svg';
+import { ReactComponent as Phone } from '@assets/phone.svg';
+import { ReactComponent as Edit } from '@assets/edit.svg';
+import { ReactComponent as Trash } from '@assets/trash.svg';
+import { ReactComponent as Arrow } from '@assets/arrow.svg';
 
 interface IContactList {
   contact: IContact;
@@ -50,65 +55,61 @@ export const ContactList = ({ contact }: IContactList) => {
 
   return (
     <SC.ContainerContactList>
-      <div>
-        <SC.ContainerName>
-          {contact.name} {contact.lastname}
-        </SC.ContainerName>
-        <SC.ContainerBadge>
-          {contact.telephones[0].telephone}
-          {contact.telephones.length !== 1 && (
+      <SC.ContainterTop>
+        <Edit
+          onClick={() =>
+            dispatch(
+              setModalContacts({
+                isOpen: true,
+                type: 'edit',
+                data: contact,
+              })
+            )
+          }
+        />
+        <Trash
+          onClick={() =>
+            dispatch(
+              setAlert({
+                isOpen: true,
+                title: 'Atenção!',
+                text: 'Ao excluir o contato você não terá mais acesso a informação do mesmo!',
+                submit: () => handleDelete(),
+              })
+            )
+          }
+        />
+      </SC.ContainterTop>
+      <SC.ContainerMiddle>
+        <SC.Initial>{contact.name.substring(0, 1).toUpperCase()}</SC.Initial>
+        <div>
+          <div className="name">
+            {contact.name} {contact.lastname}
+          </div>
+          <div className="telephone">{contact.telephones[0].telephone}</div>
+          <SC.ContainerBadge>
             <div className="badge">
+              <Phone />
               <div>Telefones cadastrados:</div>
               <b>{contact.telephones.length}</b>
             </div>
-          )}
-        </SC.ContainerBadge>
-        <SC.ContainerBadge>
-          {contact.address[0].city}, {contact.address[0].state}
-          {contact.address.length !== 1 && (
+          </SC.ContainerBadge>
+          <SC.ContainerBadge>
             <div className="badge">
+              <Map />
               <div>Endereços cadastrados:</div>
               <b>{contact.address.length}</b>
             </div>
-          )}
-        </SC.ContainerBadge>
-
-        {showDetails && <Details contact={contact} />}
-        <SC.ContainerButtons>
-          <Button className="sm" onClick={() => setShowDetails(!showDetails)}>
-            {showDetails ? 'Ocultar' : 'Ver'} detalhes
-          </Button>
-          <Button
-            className="sm"
-            onClick={() =>
-              dispatch(
-                setModalContacts({
-                  isOpen: true,
-                  type: 'edit',
-                  data: contact,
-                })
-              )
-            }
-          >
-            Editar contato
-          </Button>
-          <Button
-            className="sm delete"
-            onClick={() =>
-              dispatch(
-                setAlert({
-                  isOpen: true,
-                  title: 'Atenção!',
-                  text: 'Ao excluir o contato você não terá mais acesso a informação do mesmo!',
-                  submit: () => handleDelete(),
-                })
-              )
-            }
-          >
-            Excluir
-          </Button>
-        </SC.ContainerButtons>
-      </div>
+          </SC.ContainerBadge>
+        </div>
+      </SC.ContainerMiddle>
+      <SC.Footer
+        open={showDetails}
+        onClick={() => setShowDetails(!showDetails)}
+      >
+        <span>Ver detalhes</span> <Arrow />
+      </SC.Footer>
+      {showDetails && <Details contact={contact} />}
     </SC.ContainerContactList>
   );
 };
