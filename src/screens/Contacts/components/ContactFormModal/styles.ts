@@ -109,7 +109,7 @@ export const CreateModalContainer = styled.div`
           svg {
             width: 1em;
             height: 1em;
-            fill: var(--white);
+            fill: var(--success);
           }
         }
       }
@@ -130,5 +130,18 @@ export const CreateModalContainer = styled.div`
     margin-top: 0.3em;
     font-size: 12px;
     color: var(--error);
+  }
+`;
+
+export const ButtonAdd = styled.div`
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.8;
+  }
+
+  > svg {
+    width: 1.6em !important;
+    height: 1.6em !important;
   }
 `;

@@ -3,11 +3,11 @@ html {
 }
 
 :root {
-  --black: #171923;
+  --black: #404040;
   --white: #e2e8f0;
   --black-second: #2d2d2d;
   --error: #f24c62;
-  --success: #42ba96;
+  --success: #31cc24;
 }
 
 *,

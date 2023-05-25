@@ -9,7 +9,7 @@ import {
 import { setConcatContact, setUpdateContact } from '@store/reducers/contacts';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import Address from './components/Address';
@@ -24,6 +24,7 @@ import Button from '@components/Button';
 import { ReactComponent as Map } from '@assets/map.svg';
 import { ReactComponent as Phone } from '@assets/phone.svg';
 import { ReactComponent as Close } from '@assets/close.svg';
+import { ReactComponent as Plus } from '@assets/plus.svg';
 
 import * as SC from './styles';
 
@@ -118,7 +119,7 @@ export const ContactFormModal = () => {
     name: 'telephones',
   });
 
-  async function handleSubmit(data: any) {
+  const handleSubmit: SubmitHandler<any> = async (data) => {
     dispatch(setIsLoading(true));
 
     const { response }: Response =
@@ -159,7 +160,7 @@ export const ContactFormModal = () => {
       : dispatch(setUpdateContact(response.data));
 
     dispatch(setIsLoading(false));
-  }
+  };
 
   useEffect(() => {
     if (modal.isOpen && modal.type === 'edit') {
@@ -243,11 +244,10 @@ export const ContactFormModal = () => {
 
               <div className="multiple-title">
                 <div className="title-img">
-                  <span>Telefones</span>
                   <Phone />
+                  <span>Telefones</span>
                 </div>
-                <Button
-                  className="sm"
+                <SC.ButtonAdd
                   onClick={(e) => {
                     e.preventDefault();
                     appendTelephone({
@@ -257,8 +257,8 @@ export const ContactFormModal = () => {
                     clearErrors();
                   }}
                 >
-                  Novo telefone
-                </Button>
+                  <Plus />
+                </SC.ButtonAdd>
               </div>
 
               {telephoneFields.map((telephone, index: number) => (
@@ -276,20 +276,19 @@ export const ContactFormModal = () => {
 
               <div className="multiple-title">
                 <div className="title-img">
-                  <span>Endereços</span>
                   <Map />
+                  <span>Endereços</span>
                 </div>
 
-                <Button
-                  className="sm"
+                <SC.ButtonAdd
                   onClick={(e) => {
                     e.preventDefault();
                     appendAddress(INITIAL_VALUE_ADDRESS);
                     clearErrors();
                   }}
                 >
-                  Novo endereço
-                </Button>
+                  <Plus />
+                </SC.ButtonAdd>
               </div>
 
               {addressFields.map((address, index: number) => (
@@ -307,7 +306,7 @@ export const ContactFormModal = () => {
               ))}
             </div>
             <div className="container-button">
-              <Button className="lg" type="submit">
+              <Button className="lg success" type="submit">
                 {modal.type === 'edit' ? 'Editar' : 'Criar'}
               </Button>
             </div>

@@ -6,9 +6,7 @@ const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 export type Options = {
   method: 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE';
   data?: any;
-  params?: any;
   url: string;
-  headers?: any;
 };
 
 export type Response = {

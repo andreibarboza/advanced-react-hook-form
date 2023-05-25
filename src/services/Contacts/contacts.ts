@@ -1,3 +1,4 @@
+import { IContact } from '@customTypes/contacts';
 import { Options, requestAPI } from '../api';
 
 export const getAllContacts = () => {
@@ -9,7 +10,7 @@ export const getAllContacts = () => {
   return requestAPI(options);
 };
 
-export const createContact = (data: any) => {
+export const createContact = (data: Omit<IContact, 'id'>) => {
   const options: Options = {
     url: `http://localhost:3000/contacts`,
     method: 'POST',
@@ -19,7 +20,7 @@ export const createContact = (data: any) => {
   return requestAPI(options);
 };
 
-export const editContact = (data: any, id: string) => {
+export const editContact = (data: IContact, id: string) => {
   const options: Options = {
     url: `http://localhost:3000/contacts/${id}`,
     method: 'PATCH',

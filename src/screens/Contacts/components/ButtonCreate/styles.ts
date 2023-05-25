@@ -10,26 +10,20 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   gap: 10px;
 
-  padding: 0.5em 1em;
+  border-radius: 50%;
 
-  background-color: var(--white);
+  background-color: var(--success);
+
+  padding: 1em;
 
   bottom: 1.5em;
   right: 1.5em;
+
   z-index: 15;
 
-  border-radius: 0.5em;
-
-  > button {
-    font-size: 1.5em;
-    text-transform: uppercase;
-    color: var(--black);
-    font-weight: 600;
-  }
-
   svg {
-    width: 2em;
-    height: 2em;
-    fill: var(--black);
+    width: 4em;
+    height: 4em;
+    fill: var(--white);
   }
 `;

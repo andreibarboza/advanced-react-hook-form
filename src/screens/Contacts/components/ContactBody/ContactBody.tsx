@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDebounce } from '@hooks/useDebounce';
 import { RootState } from '@store/app';
+import { setIsLoading } from '@store/reducers/visuals';
 import { Response } from '@services/api';
 import { Services } from '@services/index';
 import { IContact } from '@customTypes/contacts';
@@ -10,7 +11,6 @@ import { setContacts } from '@store/reducers/contacts';
 import ContactList from './components/ContactList';
 
 import * as SC from './styles';
-import { setIsLoading } from '@store/reducers/visuals';
 
 interface IContactBody {
   search: string;
@@ -24,18 +24,27 @@ export const ContactBody = ({ search }: IContactBody) => {
 
   const foundedContacts =
     debouncedValue.length !== 0
-      ? contacts?.filter(
-          (contact: any) =>
-            contact.name
-              .concat(contact.lastname)
-              .toLowerCase()
-              .trim()
-              .includes(debouncedValue.trim().toLowerCase()) ||
-            contact.lastname
-              .toLowerCase()
-              .trim()
-              .includes(debouncedValue.trim().toLowerCase())
-        )
+      ? contacts?.map((item) => {
+          const object: { byName: IContact[]; letter: string } = {
+            byName: [],
+            letter: '',
+          };
+
+          object.byName = item.byName.filter(
+            (contact) =>
+              contact.name
+                .toLowerCase()
+                .trim()
+                .includes(debouncedValue.trim().toLowerCase()) ||
+              contact.lastname
+                .toLowerCase()
+                .trim()
+                .includes(debouncedValue.trim().toLowerCase())
+          );
+          object.letter = item.letter;
+
+          return object;
+        })
       : contacts;
 
   async function getContacts() {
@@ -54,20 +63,29 @@ export const ContactBody = ({ search }: IContactBody) => {
   }, []);
 
   const BodyContent = useMemo(() => {
-    if (isLoading && contacts.length === 0) return;
+    const haveNoContact = contacts.every(({ byName }) => byName.length === 0);
+
+    if (isLoading && haveNoContact) return;
+
+    if (haveNoContact) {
+      return <SC.EmptyMessage>Nenhum usuário criado</SC.EmptyMessage>;
+    }
 
     if (foundedContacts.length !== 0) {
-      return foundedContacts.map((contact: IContact) => (
-        <ContactList key={contact.id} contact={contact} />
+      if (foundedContacts.every(({ byName }) => byName.length === 0)) {
+        return <SC.EmptyMessage>Nenhum usuário encontrado</SC.EmptyMessage>;
+      }
+
+      return foundedContacts.map(({ letter, byName }) => (
+        <SC.ContainerWithLetter key={letter}>
+          {byName.length !== 0 && <div className="letter">{letter}</div>}
+          <div className="contacts">
+            {byName.map((contact: IContact) => (
+              <ContactList key={contact.id} contact={contact} />
+            ))}
+          </div>
+        </SC.ContainerWithLetter>
       ));
-    }
-
-    if (contacts.length !== 0 && foundedContacts.length === 0) {
-      return <SC.EmptyMessage>Nenhum usuário encontrado</SC.EmptyMessage>;
-    }
-
-    if (contacts.length === 0) {
-      return <SC.EmptyMessage>Nenhum usuário criado</SC.EmptyMessage>;
     }
   }, [isLoading, contacts, foundedContacts]);
 
