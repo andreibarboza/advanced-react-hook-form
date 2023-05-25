@@ -1,6 +1,6 @@
-# PS VExpenses
+# React with react-hook-form
 
-Projeto de agenda de contatos realizado para o processo seletivo da VExpenses
+Projeto para aprender a utilizar react-hook-form de maneira mais complexa
 
 ## Start
 
